@@ -1,4 +1,6 @@
 {
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
         {
@@ -30,44 +32,21 @@
             "problemMatcher": []
         },
         {
-            "label": "Run QEMU",
+            "label": "Run Application",
             "dependsOn": "Build",
             "type": "shell",
-            "command": "${workspaceFolder}/diag-qemu.sh",
-            "args": [ ],
+            "command": "build/debug/Application",
+            "args": [],
             "group": "test",
             "problemMatcher": []
         },
         {
-            "label": "Run QEMU serial",
+            "label": "Clang-tidy",
             "dependsOn": "Build",
             "type": "shell",
-            "command": "${workspaceFolder}/diag-qemu.sh",
-            "args": [ "--serial" ],
-            "group": "test",
-            "problemMatcher": []
-        },
-        {
-            "label": "Run QEMU container",
-            "dependsOn": "Build",
-            "type": "shell",
-            "command": "${workspaceFolder}/run-qemu.sh",
+            "command": "${workspaceFolder}/build.sh",
             "args": [
-                "--nographic",
-                "${workspaceFolder}/build/debug/Application.elf"
-            ],
-            "group": "test",
-            "problemMatcher": []
-        },
-        {
-            "label": "Run QEMU container serial",
-            "dependsOn": "Build",
-            "type": "shell",
-            "command": "${workspaceFolder}/run-qemu.sh",
-            "args": [
-                "--nographic",
-                "serial",
-                "${workspaceFolder}/build/debug/Application.elf"
+                "clang-tidy"
             ],
             "group": "test",
             "problemMatcher": []
